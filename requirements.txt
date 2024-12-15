@@ -1,0 +1,16 @@
+pandas
+pyproj
+psycopg2
+sqlalchemy
+geoalchemy2
+geopandas
+fastapi[standard]
+uvicorn
+asyncpg
+dash
+dash_bootstrap_components
+dash-leaflet
+dash_extensions
+shapely
+requests
+gunicorn

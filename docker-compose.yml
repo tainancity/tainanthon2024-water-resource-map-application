@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+
+  # WEB(Python Dash)
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/web/Dockerfile
+    restart: always
+    ports:
+      - "8888:8888"
+    depends_on:
+      - db
+      - api
+    environment:
+      - API_HOST=api
+    volumes:
+      - ./web:/code
+
+  # FastAPI
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/fastapi/Dockerfile
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+    volumes:
+      - ./api:/code
+
+  # PostGIS資料庫資料初始化(匯入人口與門牌資料)
+  initdb:
+    build:
+      context: .
+      dockerfile: ./docker/initdb/Dockerfile
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+
+  # PostGIS資料庫
+  db:
+    image: postgis/postgis:17-3.5
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=admin
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  db_data:
