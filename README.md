@@ -9,20 +9,20 @@
 
 ## 專案成果影片
 
+* 請點擊以下圖片至YouTube觀看:
 [![](https://img.youtube.com/vi/uOd5cYxc7uE/0.jpg)](https://www.youtube.com/watch?v=uOd5cYxc7uE)
 
 ## 專案部署流程
+* Step1. 在專案目錄底下執行此程式碼，建立.env檔案，裡面包含資料庫的密碼:
+```
+echo POSTGRES_PASSWORD=admin >> .env
+```
 
-* 本專案可直接以Docker-compose指令部署:
+* Step2. 執行Docker-compose指令部署專案:
 ```
 docker-compose up -d
 ```
-* 部署完成後，在本機端連線至此網址: `http://127.0.0.1:8888/` 即可開始使用
-* 共部署4個容器:
-    * db: PostGIS資料庫
-    * db_init: 以Python程式匯入初始資料(人口與門牌至資料庫)，啟動後須等待一段時間匯入
-    * fastapi: Python FastAPI
-    * web: Python Dash
+* Step3. 部署完成後，在本機端連線至此網址: `http://127.0.0.1:8888/` 即可開始使用
 
 ## 系統架構說明
 

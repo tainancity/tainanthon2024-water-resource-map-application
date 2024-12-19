@@ -30,6 +30,8 @@ services:
       - db
     environment:
       - DB_HOST=db
+    env_file:
+      - .env
     volumes:
       - ./api:/code
 
@@ -42,13 +44,15 @@ services:
       - db
     environment:
       - DB_HOST=db
+    env_file:
+      - .env
 
   # PostGIS資料庫
   db:
     image: postgis/postgis:17-3.5
     restart: always
-    environment:
-      - POSTGRES_PASSWORD=admin
+    env_file:
+      - .env
     volumes:
       - db_data:/var/lib/postgresql/data
     ports:

@@ -14,7 +14,7 @@ app = FastAPI()
 host = os.getenv("DB_HOST", "127.0.0.1")
 database = "postgres"
 user = "postgres"
-password = "admin"
+password = os.getenv("POSTGRES_PASSWORD")
 port = "5432"
 engine = create_async_engine(f"postgresql+asyncpg://{user}:{password}@{host}:{port}/{database}", echo=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine, class_=AsyncSession)

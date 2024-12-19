@@ -14,7 +14,7 @@ def CreateSQLEngine():
     host = os.getenv("DB_HOST", "127.0.0.1")
     database = "postgres"
     user = "postgres"
-    password = "admin"
+    password = os.getenv("POSTGRES_PASSWORD")
     port = "5432"
 
     # 建立資料庫引擎
